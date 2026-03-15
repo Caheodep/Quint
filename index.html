@@ -10,7 +10,7 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{--gold:#c9a84c;--gold2:#e8c97e;--gold3:#f5e6b8;--dark:#050505;--dark2:#0d0d0d;--dark3:#161616;--dark4:#1e1e1e;--text:#e8e0d0;--muted:#7a7060;}
   html,body{background:var(--dark);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none;}
-  #cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;mix-blend-mode:difference;}
+  #cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s;mix-blend-mode:difference;}
   #cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.18s cubic-bezier(.25,.8,.25,1);opacity:0.6;}
   #particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
   .particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:float linear infinite;}
@@ -21,6 +21,23 @@
   .nav-links{display:flex;gap:2.5rem;}
   .nav-links a{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s;cursor:none;}
   .nav-links a:hover{color:var(--gold2);}
+
+  /* MUSIC PLAYER */
+  #music-player{position:fixed;bottom:2rem;right:2rem;z-index:200;display:flex;align-items:center;gap:1rem;background:rgba(13,13,13,0.95);border:0.5px solid #2a2a2a;padding:1rem 1.5rem;backdrop-filter:blur(10px);}
+  #music-player::before{content:'';position:absolute;top:-1px;left:-1px;width:16px;height:16px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);}
+  #music-player::after{content:'';position:absolute;bottom:-1px;right:-1px;width:16px;height:16px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);}
+  .player-btn{width:36px;height:36px;border-radius:50%;border:0.5px solid var(--gold);background:transparent;color:var(--gold);cursor:none;display:flex;align-items:center;justify-content:center;transition:background 0.3s;font-size:14px;flex-shrink:0;}
+  .player-btn:hover{background:rgba(201,168,76,0.1);}
+  .player-info{display:flex;flex-direction:column;gap:2px;min-width:140px;max-width:180px;}
+  .player-title{font-size:0.65rem;letter-spacing:0.1em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .player-artist{font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);}
+  .player-progress{width:100%;height:1px;background:#2a2a2a;position:relative;cursor:none;}
+  .player-bar{height:1px;background:linear-gradient(to right,var(--gold),var(--gold2));width:0%;transition:width 0.5s linear;}
+  .player-vol{display:flex;align-items:center;gap:6px;}
+  .player-vol span{font-size:10px;color:var(--muted);}
+  .vol-slider{-webkit-appearance:none;appearance:none;width:60px;height:1px;background:#2a2a2a;outline:none;cursor:none;}
+  .vol-slider::-webkit-slider-thumb{-webkit-appearance:none;width:8px;height:8px;border-radius:50%;background:var(--gold);cursor:none;}
+
   .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem 4rem;position:relative;}
   .hero-eyebrow{font-size:0.65rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp 1s 0.3s forwards;}
   .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,10vw,8rem);font-weight:300;line-height:0.9;letter-spacing:0.05em;color:var(--text);margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s 0.6s forwards;}
@@ -62,14 +79,8 @@
   .skill-icon{font-size:1.5rem;margin-bottom:1rem;color:var(--gold);}
   .skill-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:0.5rem;}
   .skill-level{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
-  .skill-bar{height:1px;background:#1a1a1a;position:relative;}
+  .skill-bar{height:1px;background:#1a1a1a;}
   .skill-fill{height:1px;background:linear-gradient(to right,var(--gold),var(--gold2));transition:width 1.5s cubic-bezier(.25,.8,.25,1);}
-  .music-section{max-width:700px;margin:0 auto;text-align:center;}
-  .music-section .section-title{text-align:center;}
-  .spotify-wrapper{background:var(--dark2);padding:2rem;border:0.5px solid #1e1e1e;position:relative;}
-  .spotify-wrapper::before,.spotify-wrapper::after{content:'';position:absolute;width:20px;height:20px;}
-  .spotify-wrapper::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);}
-  .spotify-wrapper::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);}
   .contact-section{text-align:center;padding:6rem 4rem 8rem;}
   .contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;color:var(--text);margin-bottom:2rem;line-height:1;}
   .contact-title em{color:var(--gold2);font-style:italic;}
@@ -85,7 +96,7 @@
   .reveal.visible{opacity:1;transform:translateY(0);}
   .formerly{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-top:1rem;opacity:0;animation:fadeIn 1s 1.3s forwards;}
   .formerly span{color:var(--gold);font-style:italic;}
-  @media(max-width:768px){nav{padding:1.5rem 2rem;}.nav-links{display:none;}section{padding:4rem 2rem;}.about-grid{grid-template-columns:1fr;}.contact-links{flex-direction:column;gap:1.5rem;}footer{flex-direction:column;gap:1rem;text-align:center;}}
+  @media(max-width:768px){nav{padding:1.5rem 2rem;}.nav-links{display:none;}section{padding:4rem 2rem;}.about-grid{grid-template-columns:1fr;}.contact-links{flex-direction:column;gap:1.5rem;}footer{flex-direction:column;gap:1rem;text-align:center;}#music-player{bottom:1rem;right:1rem;padding:0.75rem 1rem;}.player-info{min-width:100px;}}
 </style>
 </head>
 <body>
@@ -93,6 +104,29 @@
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <div id="particles"></div>
+
+<!-- AUDIO -->
+<audio id="bg-audio" loop>
+  <source src="SpotiMate_io_-_L_oiseau_et_l_enfant_-_Marie_Myriam.mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- MUSIC PLAYER -->
+<div id="music-player">
+  <button class="player-btn" id="play-btn" title="Play / Pause">▶</button>
+  <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+    <div class="player-info">
+      <div class="player-title">L'oiseau et l'enfant</div>
+      <div class="player-artist">Marie Myriam</div>
+    </div>
+    <div class="player-progress" id="progress-bar">
+      <div class="player-bar" id="player-bar"></div>
+    </div>
+  </div>
+  <div class="player-vol">
+    <span>♪</span>
+    <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.01" value="0.7"/>
+  </div>
+</div>
 
 <div class="page">
 
@@ -102,7 +136,6 @@
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
-    <a href="#music">Music</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -112,9 +145,7 @@
   <h1 class="hero-name">Qu<span>int</span></h1>
   <p class="formerly">formerly known as <span>Caheodep</span></p>
   <p class="hero-tagline" style="margin-top:1.5rem;">just building stuff i think is cool</p>
-  <div class="gold-divider">
-    <span></span><i></i><span></span>
-  </div>
+  <div class="gold-divider"><span></span><i></i><span></span></div>
   <div class="hero-line"></div>
   <div class="hero-scroll">Scroll to explore</div>
 </section>
@@ -160,27 +191,21 @@
       <div class="project-tag">Survival / Brainrot</div>
       <h3 class="project-title">Survive Lava for Brainrots</h3>
       <p class="project-desc">A chaotic survival game where players dodge rising lava while the whole thing goes full brainrot. Fast-paced, loud, and weirdly addictive.</p>
-      <div class="project-tags">
-        <span class="tag">Lua</span><span class="tag">Physics</span><span class="tag">Survival</span><span class="tag">Brainrot</span>
-      </div>
+      <div class="project-tags"><span class="tag">Lua</span><span class="tag">Physics</span><span class="tag">Survival</span><span class="tag">Brainrot</span></div>
     </div>
     <div class="project-card shimmer">
       <div class="project-num">02</div>
       <div class="project-tag">Simulator</div>
       <h3 class="project-title">+1 Speed Per Step</h3>
       <p class="project-desc">Every step you take makes you faster. Simple concept, insanely satisfying. Built with a smooth stat progression system and leaderboards.</p>
-      <div class="project-tags">
-        <span class="tag">Lua</span><span class="tag">DataStore</span><span class="tag">Simulator</span><span class="tag">Leaderboard</span>
-      </div>
+      <div class="project-tags"><span class="tag">Lua</span><span class="tag">DataStore</span><span class="tag">Simulator</span><span class="tag">Leaderboard</span></div>
     </div>
     <div class="project-card shimmer">
       <div class="project-num">03</div>
       <div class="project-tag">Clicker / Brainrot</div>
       <h3 class="project-title">Break Toilets for Brainrots</h3>
       <p class="project-desc">You break toilets. That's it. That's the game. Packed with brainrot energy, satisfying destruction mechanics, and questionable humor.</p>
-      <div class="project-tags">
-        <span class="tag">Lua</span><span class="tag">Destruction</span><span class="tag">Clicker</span><span class="tag">Brainrot</span>
-      </div>
+      <div class="project-tags"><span class="tag">Lua</span><span class="tag">Destruction</span><span class="tag">Clicker</span><span class="tag">Brainrot</span></div>
     </div>
   </div>
 </section>
@@ -230,23 +255,11 @@
   </div>
 </section>
 
-<section id="music">
-  <div class="music-section reveal">
-    <div class="section-label">Now Playing</div>
-    <h2 class="section-title">Soundtrack</h2>
-    <div class="spotify-wrapper">
-      <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/599jKuI8NJrKEbIQCpibO0?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
-
 <section class="contact-section" id="contact">
   <div class="reveal">
     <h2 class="contact-title">Hit Me<br/><em>Up.</em></h2>
     <p style="font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Open to collabs &amp; commissions</p>
-    <div class="gold-divider" style="opacity:1;animation:none;">
-      <span></span><i></i><span></span>
-    </div>
+    <div class="gold-divider" style="opacity:1;animation:none;"><span></span><i></i><span></span></div>
     <div class="contact-links">
       <a class="contact-link" href="https://discord.com/users/699672585083945091" target="_blank">Discord</a>
       <a class="contact-link" href="https://www.roblox.com/users/1366979922/profile" target="_blank">Roblox</a>
@@ -279,6 +292,43 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 const skillObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.skill-fill').forEach(bar=>{setTimeout(()=>bar.style.width=bar.dataset.width,200);});skillObs.unobserve(e.target);}});},{threshold:0.3});
 document.querySelectorAll('.skills-grid').forEach(el=>skillObs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
+
+// AUDIO PLAYER
+const audio=document.getElementById('bg-audio');
+const playBtn=document.getElementById('play-btn');
+const playerBar=document.getElementById('player-bar');
+const volSlider=document.getElementById('vol-slider');
+let playing=false;
+audio.volume=0.7;
+
+function tryAutoplay(){
+  audio.play().then(()=>{playing=true;playBtn.textContent='▐▐';}).catch(()=>{playing=false;});
+}
+
+document.addEventListener('click',function startOnClick(){
+  if(!playing){tryAutoplay();}
+  document.removeEventListener('click',startOnClick);
+},true);
+
+playBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  if(playing){audio.pause();playBtn.textContent='▶';playing=false;}
+  else{audio.play();playBtn.textContent='▐▐';playing=true;}
+});
+
+audio.addEventListener('timeupdate',()=>{
+  if(audio.duration){playerBar.style.width=(audio.currentTime/audio.duration*100)+'%';}
+});
+
+volSlider.addEventListener('input',()=>{audio.volume=volSlider.value;});
+
+document.getElementById('progress-bar').addEventListener('click',e=>{
+  const rect=e.currentTarget.getBoundingClientRect();
+  const pct=(e.clientX-rect.left)/rect.width;
+  audio.currentTime=pct*audio.duration;
+});
+
+tryAutoplay();
 </script>
 </body>
 </html>
